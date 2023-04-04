@@ -2,10 +2,11 @@
 import vlc
 from mutagen.mp3 import MP3
 from mutagen.mp4 import MP4
+from mutagen.wave import WAVE
 import time
 
 
-class Audio:
+class AudioVLC:
 
     def __init__(self, path_to_audio: str):
         self.audio = path_to_audio
@@ -21,6 +22,8 @@ class Audio:
             return MP3(self.audio).info.length
         elif self.get_extension() == '.mp4':
             return MP4(self.audio).info.length
+        elif self.get_extension() == '.wav':
+            return WAVE(self.audio).info.length
         else:
             raise ValueError('Неизвестное расширение аудио')
 
