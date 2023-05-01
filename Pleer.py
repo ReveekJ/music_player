@@ -10,6 +10,7 @@ class AudioVLC:
 
     def __init__(self, path_to_audio: str):
         self.audio = path_to_audio
+        self.is_playing = False
 
     # def get_name(self):
     #     return self.audio[:self.audio.find('.')]
@@ -28,6 +29,8 @@ class AudioVLC:
             raise ValueError('Неизвестное расширение аудио')
 
     def play_audio(self):
+        self.is_playing = True
         player = vlc.MediaPlayer(self.audio)
         player.play()
         time.sleep(self.get_len())
+        self.is_playing = False
